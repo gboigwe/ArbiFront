@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ethers } from 'ethers';
-import ArbiFundJson from '../../arbifund/out/ArbiFund.sol';
+import ArbiFundJson from './ArbiFund.json';
 
 const contractABI = ArbiFundJson.abi;
 const contractAddress = "0xd86c9e404B7d23ADE15c3b0b10CdA705772A5A36";
@@ -14,8 +14,8 @@ function App() {
     const init = async () => {
       if (window.ethereum) {
         await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
+        const provider = new ethers.BrowserProvider(window.ethereum);
+        const signer = await provider.getSigner();
         const arbiFundContract = new ethers.Contract(contractAddress, contractABI, signer);
         setContract(arbiFundContract);
 
@@ -35,7 +35,7 @@ function App() {
   const handleDonate = async (startupId) => {
     if (contract && donationAmount) {
       try {
-        const tx = await contract.donate(startupId, { value: ethers.utils.parseEther(donationAmount) });
+        const tx = await contract.donate(startupId, { value: ethers.parseEther(donationAmount) });
         await tx.wait();
         alert('Donation successful!');
         // Refresh startups data
@@ -52,7 +52,7 @@ function App() {
       {startups.map((startup) => (
         <div key={startup.id}>
           <h2>{startup.name}</h2>
-          <p>Total Donations: {ethers.utils.formatEther(startup.totalDonations)} ETH</p>
+          <p>Total Donations: {ethers.formatEther(startup.totalDonations)} ETH</p>
           <input
             type="text"
             value={donationAmount}
