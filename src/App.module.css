@@ -1,0 +1,98 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  .walletInfo {
+    text-align: center;
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .startupList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+  }
+  
+  .startupCard {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .startupCard:hover {
+    transform: translateY(-5px);
+  }
+  
+  .startupName {
+    font-size: 1.2em;
+    color: #34495e;
+    margin-bottom: 10px;
+  }
+  
+  .donationInfo {
+    font-size: 0.9em;
+    color: #7f8c8d;
+    margin-bottom: 15px;
+  }
+  
+  .donationForm {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .donationInput {
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #bdc3c7;
+    border-radius: 4px;
+  }
+  
+  .donateButton {
+    padding: 10px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .donateButton:hover {
+    background-color: #2980b9;
+  }
+  
+  .loadingSpinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+  }
+  
+  .error, .noStartups {
+    text-align: center;
+    color: #e74c3c;
+    padding: 20px;
+    background-color: #fadbd8;
+    border-radius: 5px;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 600px) {
+    .startupList {
+      grid-template-columns: 1fr;
+    }
+  }
